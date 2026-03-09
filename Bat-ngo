@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bất ngờ dành cho bạn</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#ffd6e7,#d6f5ff);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+/* hoa rơi */
+
+.flower{
+position:fixed;
+top:-50px;
+font-size:20px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-50px) rotate(0deg);
+}
+100%{
+transform:translateY(110vh) rotate(360deg);
+}
+}
+
+/* trang bất ngờ */
+
+#surprise{
+text-align:center;
+position:relative;
+}
+
+.title{
+font-size:32px;
+margin-bottom:30px;
+color:#ff4d6d;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:25px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+/* ảnh */
+
+.photo{
+position:absolute;
+width:120px;
+height:120px;
+object-fit:cover;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-10px);}
+}
+
+.p1{top:-150px; left:-150px;}
+.p2{top:-150px; right:-150px;}
+.p3{bottom:-150px; left:-150px;}
+.p4{bottom:-150px; right:-150px;}
+
+/* thiệp */
+
+#card{
+display:none;
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+text-align:center;
+width:320px;
+}
+
+h1{
+color:#ff4d6d;
+}
+
+.info{
+margin-top:10px;
+font-size:18px;
+}
+
+/* trái tim */
+
+.heart{
+position:fixed;
+font-size:24px;
+animation:heartFloat 3s linear forwards;
+}
+
+@keyframes heartFloat{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(-200px);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- trang bất ngờ -->
+
+<div id="surprise">
+
+<div class="title">🎁 Bạn vừa nhận được 1 bất ngờ</div>
+
+<img src="anh1.jpg" class="photo p1">
+<img src="anh2.jpg" class="photo p2">
+<img src="anh3.jpg" class="photo p3">
+<img src="anh4.jpg" class="photo p4">
+
+<button onclick="openCard()">Mở bất ngờ</button>
+
+</div>
+
+<!-- thiệp -->
+
+<div id="card">
+
+<h1>💌 Thiệp mời</h1>
+
+<p class="info">Trân trọng mời bạn tham dự</p>
+
+<h2>Tiệc của chúng mình</h2>
+
+<p class="info">📅 18:00 - 15/03/2026</p>
+
+<p class="info">📍 Địa điểm: ...</p>
+
+<p class="info">Rất mong bạn đến!</p>
+
+</div>
+
+<script>
+
+/* hoa rơi */
+
+for(let i=0;i<25;i++){
+
+let flower=document.createElement("div");
+flower.className="flower";
+flower.innerHTML="🌸";
+
+flower.style.left=Math.random()*100+"vw";
+flower.style.animationDuration=5+Math.random()*5+"s";
+flower.style.fontSize=15+Math.random()*20+"px";
+
+document.body.appendChild(flower);
+
+}
+
+/* mở thiệp */
+
+function openCard(){
+
+document.getElementById("surprise").style.display="none";
+document.getElementById("card").style.display="block";
+
+createHearts();
+
+}
+
+/* trái tim */
+
+function createHearts(){
+
+for(let i=0;i<20;i++){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+heart.innerHTML="💖";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.bottom="0px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},3000)
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
